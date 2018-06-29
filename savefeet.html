@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+<head>
+	<meta charset="utf-8" />
+	<title>++足迹</title>
+	<link rel="stylesheet" href="./footfiles/lib.min.css">
+    <link rel="stylesheet" href="./footfiles/bootstrap.css">
+    <link rel="stylesheet" href="./footfiles/app.css">
+    <link rel="stylesheet" href="./footfiles/plugins.css">
+    <link rel="stylesheet" href="./footfiles/main.css">
+	<link rel="stylesheet" type="text/css" href="../statics/css/reset.css"/>
+	 <!-- 引入.js -->
+	<script type="text/javascript" src="./footfiles/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="./footfiles/lib.min.js"></script>
+	<script type="text/javascript" src="./footfiles/lodash.min.js"></script>
+	<script type="text/javascript" src="./footfiles/main.js"></script>
+	
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+	<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<style>
+		*{margin:0;padding:0;}
+		.backimg{
+			position: relative;
+			background:url('footfiles/background.jpg')no-repeat center!important;
+			background-size: 100% 100%!important;
+		}
+		.wrong-message{text-align:100px;margin-left:1vw;width:80vw;height:4vh;font-size:13px;}
+		.startsearch{text-align: center;font-size: 15px;}
+		.addfeet{text-align: center;font-size: 15px;}
+		.generate{text-align: center;font-size: 15px;}
+		.savefeet{text-align: center;font-size: 15px;}
+		.search {
+            width: 70%;
+            height: 3vh;
+            margin: auto;
+        }
+
+        #search_value {
+            width: 70%;
+            height: 3vh;
+			margin-top:50px;
+            box-shadow: 0px 1px black, 0px 1px #333;
+        }
+
+        .search button {
+            width: 24%;
+            height: 3vh;
+            margin-left: 6px;
+			margin-top:50px;
+			background-color: #59b3f3;
+            box-shadow: 0px -1px #59b3f3, 0px -1px #59b3f3;
+        }
+		.hide{
+            display: none;
+        }
+		
+	</style>
+</head>
+
+<body class="sidebar-disabled navbar-fixed">
+	<div id = "backimg" class = "backimg">
+	<div class="main-wrap">
+		<nav class="navigation">
+            <!-- START Navbar -->
+            <div class="navbar-inverse navbar navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <h3 style="font-size:20px"><strong>+ + 足 迹</strong></h3>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown" style="margin-top:10px;">
+								<a class="dropdown-toggle user-dropdown" data-toggle="dropdown" href="" role="button">
+									<span style="font-size:15px;color:white">选项</span>
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+										<li>
+											<a class="startsearch" href="searchfeet.html">查询足迹</a>
+										</li>
+										<li>
+											<a class="addfeet" onclick="Addfeet()">添加足迹</a>
+										</li>
+										<li>
+											<a class="generate" onclick="Generatefeet()">生成足迹</a>
+										</li>
+										<li>
+											<a class="savefeet" onclick="Savefeet()">保存足迹</a>
+										</li>
+										<li role="separator" class="divider"></li>
+										<li>
+											<a href="javascript:coming()" style="text-align:center;"><strong>帮助中心</strong></a>
+										</li>
+								</ul>
+							</li>
+						</ul> <!-- /.navbar-right -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- END Navbar -->
+        </nav>
+	</div>
+	<div class="row m-b-2">
+		<div class="col-md-8">
+			<br>
+			<div id="china" style="height:82vh;"></div>
+			<hr>
+			<div class="search hide">
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="search hide">
+				<input id="search_value" type="text" placeholder="请输入待查询钱包地址."><button id="search" style="color:black">查询足迹</button>
+			</div>
+			<br>
+			<div id="province" style="height:82vh;"></div>
+			<hr>
+		</div>
+		<div>
+			<footer>
+				<div class="col-md-8">
+					<div id="wrong-message" style="color:white;margin-left:1vw;"></div>
+				</div>
+				<div class="col-md-4">
+					<p class="text-gray-dark" style="color:white;margin-left:0vw;">
+						<strong class="m-c-4">行者无疆  ©2018.6.1  中文</strong>
+						
+					</p>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<script type="text/javascript" src="footfiles/nebPay.js"></script>
+	<script type="text/javascript" src="footfiles/bootstrap.min.js"></script>
+	<script type="text/javascript" src="footfiles/nebulas.js"></script>
+	<script>
+		var thisURL = document.URL;
+		var citygo ='';
+		var getval = thisURL.split('?')[1];
+		if (getval!=null)
+		{
+			var showval = getval.split("=")[1];
+			if(showval!=null){
+				citygo = unescape(showval);
+			}
+		}
+	</script>
+	<script>
+	"use strict";
+		var dappAddress = "n1ntrpVkZqzuWfT7a1QDbv9KbXpsKABBKP9";  //合约地址
+		var nebulas = require("nebulas"),
+			Account = nebulas.Account,
+			neb = new nebulas.Neb();
+		neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));	
+		var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
+		var nebPay = new NebPay();
+		var serialNumber;
+		var intervalQuery;
+		var resultfeet = '';
+		
+		function Addfeet(){
+			var turnval;
+			turnval = escape(resultfeet);
+			document.location.href = "addfeet.html?a="+turnval;
+		}
+		function Generatefeet(){
+			var turnval;
+			turnval = escape(resultfeet);
+			document.location.href = "generatefeet.html?a="+turnval;
+		}
+		if(citygo==''){alert("新添足迹为空，请先添加足迹再保存.");}
+		else{Savefeet();}
+		
+		function Savefeet(){
+			var to = dappAddress;
+			var value = "0";
+			var callFunction = "save";
+			var callArgs = "[\"" + citygo+ "\"]";
+			serialNumber = nebPay.call(to, value, callFunction, callArgs, {    
+				listener: cbPush        
+			});
+			
+			intervalQuery = setInterval(function () {
+				funcIntervalQuery();
+			}, 5000);
+			
+		}
+		function funcIntervalQuery() {
+			nebPay.queryPayInfo(serialNumber)   //search transaction result from server 
+				.then(function (resp) {
+					console.log("tx result: " + resp);  //resp is a JSON string
+					var respObject = JSON.parse(resp);
+					if(respObject.code === 0){
+						alert(`保存足迹成功!`);
+						clearInterval(intervalQuery);
+					}
+				})
+				.catch(function (err) {
+					console.log(err);
+				});
+		}
+		function cbPush(resp) {
+			console.log("response of push: " + JSON.stringify(resp));
+		}
+	</script>
+	
+</body>
+</html>
