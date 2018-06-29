@@ -5,15 +5,15 @@ function coming() {
 function toast(msg, type) {
     toastr[type](msg);
     toastr.options = {
-        "closeButton": true,
+        "closeButton": false,
         "debug": false,
         "newestOnTop": false,
         "progressBar": true,
         "positionClass": "toast-center",
         "preventDuplicates": false,
         "onclick": null,
-        "showDuration": "1000",
-        "hideDuration": "3000",
+        "showDuration": "400",
+        "hideDuration": "1000",
         "timeOut": "100000",
         "extendedTimeOut": "100000",
         "showEasing": "swing",
