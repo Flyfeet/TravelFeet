@@ -1,5 +1,5 @@
 function coming() {
-    showInfo('欢迎使用“++足迹”，请阅读以下说明：'+"<br>"+'1.使用前请先前往 "https://github.com/ChengOrangeJu/WebExtensionWalle" 下载并安装浏览器钱包插件.'+"<br>"+'2.本应用主要包含旅游足迹查询、添加、生成和保存等功能，目前只加载了国内数据，团队在后期将继续充实地图数据.'+"<br>"+'3.添加足迹后请不要忘记点击保存足迹以保存数据到区块，否则将查询不到此次添加的信息。');
+    showInfo('欢迎使用“++足迹”，请阅读以下说明：'+"<br>"+'1.使用前请先前往 "https://github.com/ChengOrangeJu/WebExtensionWalle" 下载并安装浏览器钱包插件.'+"<br>"+'2.本应用主要包含旅游足迹查询、添加、生成和保存等功能，目前只加载了国内数据，团队在后期将继续充实地图数据.'+"<br>"+'3.添加足迹后请不要忘记点击保存足迹以保存数据到区块，否则将查询不到此次添加的信息.'+"<br>"+'4.如果无法显示足迹地图，可能是相关脚本被浏览器拦截，手动加载即可.');
 }
 
 function toast(msg, type) {
@@ -12,10 +12,10 @@ function toast(msg, type) {
         "positionClass": "toast-center",
         "preventDuplicates": false,
         "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "50000",
-        "extendedTimeOut": "50000",
+        "showDuration": "1000",
+        "hideDuration": "3000",
+        "timeOut": "10000",
+        "extendedTimeOut": "10000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
